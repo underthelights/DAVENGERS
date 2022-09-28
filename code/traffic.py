@@ -116,8 +116,9 @@ def self_car():
 	option_car = st.selectbox('상세 차종 선택', (car_detail['MODEL'].unique()))
 	# car_distance_st = st.slider('집에서 출발 항구까지의 이동 거리를 알려주세요', 0, 1000)/car_man
 	car_factor = car.loc[(car['MODEL'] == option_car)]['FACTOR']
-	st.write(car_factor)
-	st.write('자동차 이용으로 배출한 탄소량은 {}kgCO2입니다'.format(car_factor * car_distance_st))
+	# st.write(car_factor)
+	car_move_co2 = car_factor * car_distance_st
+	st.write('자동차 이용으로 배출한 탄소량은 {}kgCO2입니다'.format(car_move_co2))
 
 
 	st.header('차를 제주도로 이동시키기 위해 배출한 탄소배출량은 {}입니다'.format(carbon_car_dis_st+carbon_car_dis_ar))
