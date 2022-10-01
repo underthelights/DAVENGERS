@@ -57,7 +57,7 @@ def ship():
 	global carbon_sum, carbon_sum_ship
 	st.header("배를 선택하셨습니다")
 
-def car():
+def jeju():
 	global carbon_sum, carbon_sum_resident
 	st.header("제주도에 거주합니다")
 	carbon_sum_resident=0
@@ -74,7 +74,7 @@ def traffic():
 	# 귀하가 여행 시 이용했던 교통수단을 체크해 주세요.
 	checkbox_plane = st.checkbox('비행기 (항공편)', value=True)
 	checkbox_ship = st.checkbox('배')
-	checkbox_jeju_resident = st.checkbox('자동차')
+	checkbox_jeju_resident = st.checkbox('제주도에 거주합니다')
 	
 
 	if checkbox_plane:
@@ -84,8 +84,8 @@ def traffic():
 		st.write('배를 선택하셨습니다.')
 		ship()
 	if checkbox_jeju_resident:
-		st.write('자동차를 선택하셨습니다.')
-		car()
+		st.write('제주도에 거주합니다.')
+		jeju()
 
 
 	# if checkbox_plane==True:
