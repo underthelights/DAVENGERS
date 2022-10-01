@@ -1,0 +1,70 @@
+,cat_1,cat_2,cat_3,cat_4,item,CO2,type,type_detail
+0,1.0,1.0,1.0,1.0,Rice,0.073,food,rice&wheat
+1,1.0,1.0,1.0,2.0,Bread,0.073,food,rice&wheat
+2,1.0,1.0,1.0,3.0,Other breads and cereals,0.073,food,rice&wheat
+3,1.0,1.0,2.0,,Pasta products,0.073,food,rice&wheat
+4,1.0,1.0,3.0,1.0,"Buns, crispbread and biscuits",0.564,food,wheat-dessert
+5,1.0,1.0,3.0,2.0,Cakes and puddings,0.564,food,wheat-dessert
+6,1.0,1.0,4.0,,Pastry (savoury),0.874,food,wheat-dessert-raw
+7,1.0,1.0,5.0,,"Beef (fresh, chilled or frozen)",0.785,food,meat
+8,1.0,1.0,6.0,,"Pork (fresh, chilled or frozen)",0.785,food,meat
+9,1.0,1.0,7.0,,"Lamb (fresh, chilled or frozen)",0.785,food,meat
+10,1.0,1.0,8.0,,"Poultry (fresh, chilled or frozen)",0.785,food,meat
+11,1.0,1.0,9.0,,Bacon and ham,0.785,food,meat
+12,1.0,1.0,10.0,1.0,Sausages,0.785,food,meat
+13,1.0,1.0,10.0,2.0,"Offal, pate etc",0.785,food,meat
+14,1.0,1.0,10.0,3.0,Other preserved or processed meat and meat preparations,0.785,food,meat
+15,1.0,1.0,10.0,4.0,"Other fresh, chilled or frozen edible meat",0.785,food,meat
+16,1.0,1.0,11.0,1.0,"Fish (fresh, chilled or frozen)",0.177,food,seafood
+17,1.0,1.0,11.0,2.0,"Seafood, dried, smoked or salted fish",0.177,food,seafood
+18,1.0,1.0,11.0,3.0,Other preserved or processed fish and seafood,0.177,food,seafood
+19,1.0,1.0,12.0,1.0,Whole milk,0.204,food,dairy
+20,1.0,1.0,12.0,2.0,Low fat milk,0.204,food,dairy
+21,1.0,1.0,12.0,3.0,Preserved milk,0.204,food,dairy
+22,1.0,1.0,13.0,,Cheese and curd,0.204,food,dairy
+23,1.0,1.0,14.0,,Eggs,0.204,food,dairy
+24,1.0,1.0,15.0,1.0,Other milk products,0.204,food,dairy
+25,1.0,1.0,15.0,2.0,Yoghurt,0.204,food,dairy
+26,1.0,1.0,16.0,,Butter,0.204,food,dairy
+27,1.0,1.0,17.0,,Margarine and other vegetable fats and peanut butter,0.204,food,dairy
+28,1.0,1.0,18.0,1.0,Olive oil,0.247,food,oil
+29,1.0,1.0,18.0,2.0,Edible oils and other animal fats,0.247,food,oil
+30,1.0,1.0,19.0,1.0,Citrus fuits,0.061,food,fruit&veggi
+31,1.0,1.0,19.0,2.0,Bananas,0.061,food,fruit&veggi
+32,1.0,1.0,19.0,3.0,Apples,0.061,food,fruit&veggi
+33,1.0,1.0,19.0,4.0,Pears,0.061,food,fruit&veggi
+34,1.0,1.0,19.0,5.0,Stone fruits,0.061,food,fruit&veggi
+35,1.0,1.0,19.0,6.0,Berries,0.061,food,fruit&veggi
+36,1.0,1.0,20.0,,"Other fresh, chilled or frozen fruits",0.061,food,fruit&veggi
+37,1.0,1.0,21.0,,Dried fruit and nuts,0.061,food,fruit&veggi
+38,1.0,1.0,22.0,,Preserved fruit and fruit based products,0.061,food,fruit&veggi
+39,1.0,1.0,23.0,1.0,Leaf and stem vegetables,0.061,food,fruit&veggi
+40,1.0,1.0,23.0,2.0,Cabbages,0.061,food,fruit&veggi
+41,1.0,1.0,23.0,3.0,Vegetables grown for their fruit,0.061,food,fruit&veggi
+42,1.0,1.0,23.0,4.0,"Root crops, non starchy bulbs and mushrooms",0.061,food,fruit&veggi
+43,1.0,1.0,24.0,,Dried vegetables,0.061,food,fruit&veggi
+44,1.0,1.0,25.0,,Other prepared or processed vegetables,0.061,food,fruit&veggi
+45,1.0,1.0,26.0,,Potatoes,0.061,food,fruit&veggi
+46,1.0,1.0,27.0,,Other tubers and products of tuber vegetables,0.061,food,fruit&veggi
+47,1.0,1.0,28.0,1.0,Sugar,0.31,food,sweets
+48,1.0,1.0,28.0,2.0,Other sugar products,0.31,food,sweets
+49,1.0,1.0,29.0,,Jams and marmalades,0.31,food,sweets
+50,1.0,1.0,30.0,,Chocolate,0.31,food,sweets
+51,1.0,1.0,31.0,,Confectionery products,0.31,food,sweets
+52,1.0,1.0,32.0,,Edible ices and ice cream,0.31,food,sweets
+53,1.0,1.0,33.0,1.0,"Sauces, condiments",0.31,food,pepper
+54,1.0,1.0,33.0,2.0,"Bakers yeast, dessert preparations, soups",0.31,food,wheat-dessert-raw
+55,1.0,1.0,33.0,3.0,"Salt, spices, herbs and other food products",0.31,food,pepper
+56,1.0,2.0,1.0,,Coffee,0.275,non-alchol,non-alchol
+57,1.0,2.0,2.0,,Tea,0.275,non-alchol,non-alchol
+58,1.0,2.0,3.0,,Cocoa and powdered chocolate,0.275,non-alchol,non-alchol
+59,1.0,2.0,4.0,,Fruit and vegetable juices,0.184,non-alchol,non-alchol_fruit&veggi
+60,1.0,2.0,5.0,,Mineral or spring waters,0.275,non-alchol,non-alchol
+61,1.0,2.0,6.0,,Soft drinks,0.207,non-alchol,non-alchol_softdrink
+62,2.0,1.0,1.0,,Spirits and liqueurs,0.051,alchol,alchol
+63,2.0,1.0,2.0,1.0,Wine from grape or other fruit,0.051,alchol,alchol
+64,2.0,1.0,2.0,2.0,Fortified wine,0.051,alchol,alchol
+65,2.0,1.0,2.0,3.0,Champagne and sparkling wines,0.051,alchol,alchol
+66,2.0,1.0,3.0,1.0,Beer and lager,0.051,alchol,alchol
+67,2.0,1.0,3.0,2.0,Ciders and Perry,0.051,alchol,alchol
+68,2.0,1.0,4.0,,Alcopops,0.051,alchol,alchol

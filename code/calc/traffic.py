@@ -162,7 +162,6 @@ def self_car():
 
 	st.write('내 차의 탄소배출 SPEC')
 	st.write('내가 이용한 자동차 {}은 {}를 연료로 사용하며, 연비는 {}입니다'.format(option_car, (car_fuel_type), float(car_fuel_cost['FUEL_COST'])))
-	
 
 
 
