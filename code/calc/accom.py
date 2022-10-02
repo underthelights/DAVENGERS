@@ -8,7 +8,7 @@ import numpy as np
 
 st.title("[탄소 발자국 계산기] 숙소")
 def t1():
-	t1 = pd.read_csv('data/rename/t1_JEJU_MERCHANT.csv')
+	t1 = pd.read_csv('data/rename/t1_JEJU_MERCHANT.csv', encoding='UTF-8')
 	st.write(t1)
 
 def main():
