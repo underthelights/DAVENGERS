@@ -49,7 +49,6 @@ def q2():
 
 
 def main():
-
 	q1()
 	q2()
 	
