@@ -1,9 +1,7 @@
 from os import write
-from tabnanny import check
 import streamlit as st
 import pandas as pd
-
-st.title("[탄소 발자국 계산기] 교통수단")
+import numpy as np
 
 
 # df = pd.read_csv('web/carbon/data/traffic.csv')
@@ -290,6 +288,7 @@ def co2():
 		st.write('대중교통으로 배출한 탄소 배출량은 ', carbon_sum_public, '입니다')
 
 def main():
+	st.title("[탄소 발자국 계산기] 교통수단")
 	global carbon_sum_co2, carbon_sum_traffic
 	checkbox_traffic = st.checkbox("(Q1) 제주도까지 어떻게 이동하셨나요?")
 	checkbox_co2 = st.checkbox("(Q2) 여행 시 이용한 교통수단 별 탄소배출량을 적어주세요")

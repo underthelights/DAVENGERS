@@ -1,10 +1,8 @@
 from os import write
-from tabnanny import check
-from click import option
 import streamlit as st
 import pandas as pd
+import numpy as np
 
-st.title("[탄소 발자국 계산기] 음식")
 carbon_store_avg , carbon_store_food, carbon_food_category, carbon_food_igrd = 0,0,0,0
 
 def store():
@@ -88,6 +86,7 @@ def ingredient():
 
 
 def main():
+	st.title("[탄소 발자국 계산기] 음식")
 	checkbox_store = st.checkbox("(Q1) 제주도에서 어떤 음식점에 가셨나요?")
 	checkbox_food = st.checkbox("(Q2) 제주에서 어떤 음식을 드시고 싶은지 알려주세요")
 	checkbox_ingredient = st.checkbox("(Q3) 제주도에서 드신 음식이 어떤 재료로 이루어져 있나요?")

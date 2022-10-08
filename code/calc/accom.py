@@ -1,6 +1,4 @@
 from os import write
-from tabnanny import check
-from click import option
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -8,7 +6,7 @@ import numpy as np
 accom_total = pd.read_csv('data/preprocessed/accom/accom_total.csv')
 accom  = pd.read_csv('data/preprocessed/accom/accom.csv')
 
-st.title("[탄소 발자국 계산기] 숙소")
+
 carbon_accom, carbon_accom_total = 0, 0
 def q1():
 	global carbon_accom
@@ -49,6 +47,7 @@ def q2():
 
 
 def main():
+	st.title("[탄소 발자국 계산기] 숙소")
 	q1()
 	q2()
 	
