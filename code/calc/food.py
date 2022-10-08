@@ -32,46 +32,78 @@ def store():
 		st.write("식당에서 배출하신 총 탄소량은 {}kgCO2 이에요".format(carbon_store_avg))
 
 	elif select_option_store == "데이터베이스에 없어요":
-		st.write("저희 데이터베이스에 있는 식당이 아닙니다")	
+		st.warning("저희 데이터베이스에 있는 식당이 아닙니다")	
 		select_option_food = st.radio("어떤 음식을 드실지 계획한 바가 있나요?", ("네, 좋아요", "아니요, 괜찮아요"))
 		if select_option_food == "네, 좋아요":
 			food()
 		elif select_option_food == "아니요, 괜찮아요":
-			st.write("END")
+			st.warning("END")
 	
 def food():
 	global carbon_store_food
 	food_persona = pd.read_csv('data/preprocessed/food/food_persona.csv')
 	global carbon_food_category
-	select_option_store = st.radio("음식을 드실 계획인가요?", ("네, 먹을 거에요", "아니요, 아무것도 안 먹을 거에요"))
-	if select_option_store == "네, 먹을 거에요":
+
+	option_food_menu = st.multiselect('어떤 분류를 선택하시겠어요?', (food_persona.iloc[:,2].unique()))
+	for _ in range(0, len(option_food_menu)):
+		option_food_menu_df = food_persona.loc[food_persona.iloc[:,2] == option_food_menu[_]].reset_index()
+		option_food_menu_persona = option_food_menu_df.iloc[:,4]
+		option_food_menu_detail = option_food_menu_df.iloc[:,5]
+		option_food_menu_co2= option_food_menu_df.iloc[:,8]
+		option_food_menu_num =option_food_menu_df.iloc[:,7]
+
+		st.write('{}! "{}"를 선택하셨습니다.'.format(option_food_menu_persona[0], ))
+		option_food_detail = st.multiselect('어떤 음식을 드실 예정인가요?', option_food_menu_detail[0].split(", "))
+		st.write(option_food_menu_detail)
+
+		# st.write('{}에서 발생한 탄소 배출량은 {}kgCO2입니다'.format(menu_detail, carbon_menu_element))
+		# carbon_store_food = carbon_store_food + carbon_menu_element
+
+	st.write("음식을 드시면서 배출하신 탄소량은 {}kgCO2 이에요".format(carbon_store_food))
+
+	# select_option_store = st.radio("음식을 드실 계획인가요?", ("네, 먹을 거에요", "아니요, 아무것도 안 먹을 거에요"))
+	# if select_option_store == "네, 먹을 거에요":
 		# food_menu = pd.read_csv('data/preprocessed/food/food_menu.csv')
-			
-		food_persona = pd.read_csv('data/preprocessed/food/food_persona.csv')
-		# st.write(food_persona)
-		option_food_persona = st.multiselect('어떤 음식을 드실 예정인가요?', (food_persona['페르소나'].unique()))
-		for _ in range(0, len(option_food_persona)):
-			persona = (food_persona.loc[food_persona['페르소나'] == option_food_persona[_]])['페르소나']
-			# menu  = (food_persona.loc[food_persona['페르소나'] == option_food_persona[_]])['메뉴 종류']
-			menu = 0
-			menu_detail = (food_persona.loc[food_persona['페르소나'] == option_food_persona[_]])['세부 메뉴']
-			st.write(persona.name, menu,menu_detail)
-			st.write('{} : {}의 세부 메뉴는 {}입니다'.format(persona, menu, menu_detail))
-			carbon_menu_element = float((food_persona.loc[food_persona['페르소나'] == option_food_persona[_]])['평균탄소배출량'])
-			
-			st.write('{}에서 발생한 탄소 배출량은 {}kgCO2입니다'.format(menu_detail, carbon_menu_element))
-			carbon_store_food = carbon_store_food + carbon_menu_element
 
-		st.write("음식을 드시면서 배출하신 탄소량은 {}kgCO2 이에요".format(carbon_store_food))
+		# st.write(food_persona["페르소나"])
+		# st.write(food_persona.iloc[:, 2])
 
-	elif select_option_store == "아니요, 아무것도 안 먹을 거에요":
-		st.write("배출하신 탄소량은 0kgCO2 이에요")
+
+		# option_food_persona = st.multiselect('어떤 음식을 드실 예정인가요?', (food_persona['페르소나'].unique()))
+		# for _ in range(0, len(option_food_persona)):
+		# 	food_persona_selected = food_persona.loc[food_persona['페르소나'] == option_food_persona[_]]
+		# 	persona = (food_persona_selected)['페르소나']
+		# 	# menu  = (food_persona.loc[food_persona['페르소나'] == option_food_persona[_]])['메뉴 종류']
+		# 	menu = 0
+		# 	menu_detail = (food_persona_selected)['세부 메뉴']
+		# 	st.write(persona.name, menu,menu_detail)
+		# 	st.write('{} : {}의 세부 메뉴는 {}입니다'.format(persona, menu, menu_detail))
+		# 	carbon_menu_element = float((food_persona.loc[food_persona['페르소나'] == option_food_persona[_]])['평균탄소배출량'])
+		
+		
+	# 	option_food_menu = st.multiselect('어떤 음식을 드실 예정인가요?', (food_persona.iloc[:,2].unique()))
+	# 	for _ in range(0, len(option_food_menu)):
+	# 		option_food_menu_df = food_persona.loc[food_persona.iloc[:,2] == option_food_menu[_]].reset_index()
+	# 		option_food_menu_persona = option_food_menu_df.iloc[:,4]
+	# 		option_food_menu_detail = option_food_menu_df.iloc[:,5]
+	# 		option_food_menu_co2= option_food_menu_df.iloc[:,8]
+	# 		option_food_menu_num =option_food_menu_df.iloc[:,7]
+	# 		st.write(option_food_menu_persona[0])
+	# 		x = option_food_menu_df.iloc[:,8]
+	# 		st.write(option_food_menu_df)
+
+	# 		# st.write('{}에서 발생한 탄소 배출량은 {}kgCO2입니다'.format(menu_detail, carbon_menu_element))
+	# 		# carbon_store_food = carbon_store_food + carbon_menu_element
+
+	# 	st.write("음식을 드시면서 배출하신 탄소량은 {}kgCO2 이에요".format(carbon_store_food))
+
+	# elif select_option_store == "아니요, 아무것도 안 먹을 거에요":
+	# 	st.success("배출하신 탄소량은 0kgCO2 이에요")
 
 def ingredient():
 	global carbon_food_igrd
 	select_option_store = st.radio("음식을 드셨나요", ("네, 먹었어요", "아니요, 아무것도 안 먹었어요"))
 	if select_option_store == "네, 먹었어요":
-
 		igrd = pd.read_csv('data/preprocessed/food/food_revised.csv')
 		option_food_type = st.multiselect('드신 음식의 분류를 알려주세요.', (igrd['type_detail'].unique()))
 		#[TODO] 한국어로 reindex화 진행
@@ -91,13 +123,14 @@ def main():
 	checkbox_food = st.checkbox("(Q2) 제주에서 어떤 음식을 드시고 싶은지 알려주세요")
 	checkbox_ingredient = st.checkbox("(Q3) 제주도에서 드신 음식이 어떤 재료로 이루어져 있나요?")
 
-	
-
 	if checkbox_store:
+		st.header("제주도에서 어떤 음식점에 가셨나요?")
 		store()
 	if checkbox_food:
+		st.header("제주에서 어떤 음식을 드시고 싶은지 알려주세요")
 		food()
 	if checkbox_ingredient:
+		st.header("제주도에서 드신 음식이 어떤 재료로 이루어져 있나요?")
 		ingredient()
 
 	# st.success('여행에서 나온 총 탄소 배출량은 {}kgCO2 입니다'.format(carbon_sum_co2+carbon_sum_traffic))

@@ -5,6 +5,7 @@ import numpy as np
 import plotly.express as px
 import random
 
+# [TODO] output - day 1,2,3,4 from dict
 jeju_dic = {
 	"동쪽": ["구좌읍", "표선면", "성산읍"],
 	"서쪽": ["안덕면", "한림읍", "한경면", "대정읍"],
@@ -22,23 +23,22 @@ def direc():
 	for _ in range(0, len(direction)):
 		jeju_region = jeju_df.loc[jeju_df[0] == direction[_]][1].reset_index().drop(columns=['index'])
 		# st.write(jeju_region)
-		jeju_select = st.multiselect('구체적인 계획이 있다면, 세부적인 여행 지역도 골라보실래요?', jeju_region[1][0])
+		jeju_select = st.multiselect('{}에서 구체적인 계획이 있다면, 세부적인 여행 지역도 골라보실래요?'.format(direction[_]), jeju_region[1][0])
 		# st.write('You selected:', jeju_select)
 	# [TODO] node 들의 특성에 대한 filtering
 
-# traffic
+# traffic -> 
 def move():
 	st.header("제주도에서 어떻게 이동하실건가요?")
 	traffic = st.radio("하나만 선택해주세요", ["자동차", "대중교통"])
 	# [TODO] 친환경적인 차 ~~는 어떠세요? - based on cakc/traffic()
 	# 
 
-# velocity
-
+# velocity -> 빡빡 1, 여유 0
 def v():
 	st.header("얼마나 빡세게 제주도를 여행하시나요?")
-	select = st.selectbox("하나만 선택해주세요", ["빡빡하게", "여유롭게"])
-	pass
+	select = st.radio("하나만 선택해주세요", ["빡빡하게", "여유롭게"])
+
 
 # hexagon
 
@@ -62,6 +62,7 @@ def color_ext():
 	pass
 
 def prop():
+	st.header("여행 특성을 정해주세요")
 	val1, val2, val3, val4, val5 = st.slider('Select value', 0, 10, 1, key='val1'), st.slider('Select value', 0, 10, 1, key='val2'), st.slider('Select value', 1, 10, 1, key='val3'), st.slider('Select value', 0, 10, 1, key='val4'), st.slider('Select value', 0, 10, 1, key='val5')
 	radar_chart(val1, val2, val3, val4, val5)
 
