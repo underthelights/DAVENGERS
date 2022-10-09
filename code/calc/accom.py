@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 # [TODO] day별 탄소 배출량, 총합 탄소 배출량 -> global 
-# 		n번째 밤의 탄소 배출량은~
+# 		n번째 밤의 탄소 배출량은~	
 # 		모든 밤의 탄소 배출량은~
 accom_total = pd.read_csv('data/preprocessed/accom/accom_total.csv')
 accom  = pd.read_csv('data/preprocessed/accom/accom.csv')

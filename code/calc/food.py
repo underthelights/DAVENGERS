@@ -52,7 +52,7 @@ def food():
 		option_food_menu_co2= option_food_menu_df.iloc[:,8]
 		option_food_menu_num =option_food_menu_df.iloc[:,7]
 
-		st.write('{}! "{}"를 선택하셨습니다.'.format(option_food_menu_persona[0], ))
+		st.write('{}! "{}"를 선택하셨습니다.'.format(option_food_menu_persona[0], option_food_menu))
 		option_food_detail = st.multiselect('어떤 음식을 드실 예정인가요?', option_food_menu_detail[0].split(", "))
 		st.write(option_food_menu_detail)
 
