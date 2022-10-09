@@ -1,4 +1,5 @@
 from os import write
+from click import option
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -17,7 +18,7 @@ carbon_sum_co2, carbon_sum_self, carbon_sum_rent, carbon_sum_public = 0, 0, 0, 0
 
 def plane():
 	global carbon_sum_traffic, carbon_sum_plane
-	st.header("비행기를 선택하셨습니다")
+	st.header(":airplane: 비행기를 선택하셨습니다")
 
 	airport = ['김포공항(GMP)', '김해공항(PUS)']
 	seat_type = ['이코노미 (Economy)', '비즈니스 (Business)']
@@ -33,47 +34,52 @@ def plane():
 	if (air_start == airport[0]): #GMP
 		st.write(airport[0], '에서 비행기를 타고')
 		if (air_seat == seat_type[0]):#econ
-			st.write('제주로 이동하는 비행기를 타는 데 배출한 탄소량은', carbon[0]*2, '이에요')
+			st.write('제주로 이동하는 비행기를 타는 데 배출한 탄소 배출량은 {}kgCO2이에요'.format(round(carbon[0]*2,2)))
 			carbon_sum_plane = carbon_sum_plane + carbon[0]
 		elif (air_seat == seat_type[1]):#bus
-			st.write('제주로 이동하는 비행기를 타는 데 배출한 탄소량은', carbon[1]*2, '이에요')
+			st.write('제주로 이동하는 비행기를 타는 데 배출한 탄소 배출량은 {}kgCO2이에요'.format(round(carbon[1]*2,2)))
 			carbon_sum_plane += carbon[1]
 
 	if (air_start == airport[1]): #PUS
 		st.write(airport[1], '에서 비행기를 타고')
 		if (air_seat == seat_type[0]):
-			st.write('제주로 이동하는 비행기를 타는 데 배출한 탄소량은', carbon[2]*2, '이에요')
+			st.write('제주로 이동하는 비행기를 타는 데 배출한 탄소 배출량은', round(carbon[2]*2,2), 'kgCO2이에요')
 			carbon_sum_plane += carbon[2]
 		elif (air_seat == seat_type[1]):
-			st.write('제주로 이동하는 비행기를 타는 데 배출한 탄소량은', carbon[3]*2, '이에요')
+			st.write('제주로 이동하는 비행기를 타는 데 배출한 탄소 배출량은', round(carbon[3]*2,2), 'kgCO2이에요')
 			carbon_sum_plane += carbon[3]
 	# ⇒ 김포/이코노미: 56kg, 김해/이코노미: 41kg, 김포/비즈니스: 77kg, 김해/비즈니스: 61kg
 
 	carbon_sum_traffic += carbon_sum_plane
 
 def ship():
-	global carbon_sum, carbon_sum_ship
-	st.header("배를 선택하셨습니다")
+	global carbon_sum_traffic, carbon_sum_ship
+	st.header(":ship: 배를 선택하셨습니다")
+	harbor, harbor_dis = ['목포', '완도', '진도', '여수', '부산', '인천'], [141, 93.3, 104, 176, 290, 440]
+	option_harbor_start = st.radio("출발하신 항구를 알려주세요", (harbor))
+	st.write('{}항에서 제주항, 제주항에서 {}항으로 출발하는 항로를 선택하셨습니다'.format(option_harbor_start, option_harbor_start))
+	cnt = 0
+	if option_harbor_start in harbor:
+		print(option_harbor_start)
+		cnt = cnt +1
+
+	carbon_sum_ship = carbon_sum_ship + (harbor_dis[cnt]*85.9/1000)
+	carbon_sum_traffic = carbon_sum_traffic + carbon_sum_ship
+	st.write('제주로 이동하는 배를 타는데 배출한 탄소량은 {}kgCO2이에요'.format(round(carbon_sum_traffic*2,2)))	
 
 def jeju():
-	global carbon_sum, carbon_sum_resident
-	st.header("제주도에 거주합니다")
+	global  carbon_sum_traffic, carbon_sum_resident
+	st.header(":desert_island: 제주도에 거주합니다")
 	carbon_sum_resident=0
-	st.write("탄소 배출량은 0입니다")
-
-# def jeju_resident():
-# 	global carbon_sum, carbon_sum_resident
-# 	st.header("제주도에 거주합니다")
-# 	carbon_sum_resident=0
+	st.write("탄소 배출량은 0kgCO2입니다")
 
 def traffic():
 	global carbon_sum_traffic, carbon_sum_plane, carbon_sum_ship, carbon_sum_car, carbon_sum_resident
-	st.header("제주도까지 어떻게 이동하셨나요?")
+	st.header("❓ 제주도까지 어떻게 이동하셨나요?")
 	# 귀하가 여행 시 이용했던 교통수단을 체크해 주세요.
 	checkbox_plane = st.checkbox('비행기 (항공편)', value=True)
 	checkbox_ship = st.checkbox('배')
 	checkbox_jeju_resident = st.checkbox('제주도에 거주합니다')
-	
 
 	if checkbox_plane:
 		st.write('비행기를 선택하셨습니다.')
@@ -95,13 +101,13 @@ def traffic():
 
 	carbon_sum_traffic = carbon_sum_plane + carbon_sum_ship + carbon_sum_car
 	
-	st.header('총 탄소배출량은 {}입니다'.format(carbon_sum_traffic*2))
-	st.write('그 중 비행기로 배출한 탄소 배출량은 ', carbon_sum_plane*2, '입니다')
-	st.write('그 중 배로 배출한 탄소 배출량은 ', carbon_sum_ship*2, '입니다')
-	st.write('그 중 자동차로 배출한 탄소 배출량은 ', carbon_sum_car*2, '입니다')
+	st.success('1️⃣ 총 탄소 배출량은 {}kgCO2입니다'.format(round(carbon_sum_traffic*2,2)))
+	st.write('그 중 비행기로 배출한 탄소 배출량은 ', round(carbon_sum_plane*2,2), 'kgCO2입니다')
+	st.write('그 중 배로 배출한 탄소 배출량은 ', round(carbon_sum_ship*2,2), 'kgCO2입니다')
+	st.write('그 중 자동차로 배출한 탄소 배출량은 ', round(carbon_sum_car*2,2), 'kgCO2입니다')
 
 def self_car():
-	global carbon_sum_self
+	global carbon_sum_self, carbon_sum_traffic
 	
 	car_man = st.slider('함께 탑승한 인원수를 입력해주세요', 1, 8)
 	st.text('함께 {}명 탑승했습니다 '.format(car_man))
@@ -123,29 +129,29 @@ def self_car():
 	car_factor = car.loc[(car['MODEL'] == option_car)]['FACTOR']
 	car_factor_df = pd.DataFrame(car_factor)
 	car_move_co2 = float(car_factor_df['FACTOR'] * car_dis_sum)/car_man
-	st.write('자동차 이용으로 배출한 탄소량은 {}kgCO2입니다'.format(car_move_co2))
+	st.write('자동차 이용으로 배출한 탄소량은 {}kgCO2입니다'.format(round(car_move_co2,2)))
 	car_avg_co2 = float(pd.DataFrame(car['FACTOR']).mean() * car_dis_sum /car_man)
 	# st.write(car_avg_co2)
 	car_co2_dif = abs(car_move_co2-car_avg_co2)
 	if car_co2_dif>0:
-		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(car_co2_dif))
+		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(format(car_co2_dif,2)))
 	elif car_co2_dif<0:
-		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(car_co2_dif))
+		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(format(car_co2_dif,2)))
 	
 	# 자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 [ ]만큼 많아요/적어요
 	car_size_co2 = 0
 	car_size_co2_dif = abs(car_size_co2 - car_avg_co2)
 	if car_size_co2_dif>0:
-		st.write('자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(car_size_co2_dif))
+		st.write('자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(round(car_size_co2_dif,2)))
 	elif car_size_co2_dif<0:
-		st.write('자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(car_size_co2_dif))
+		st.write('자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(round(car_size_co2_dif,2)))
 
 
 	st.write('자동차 이용으로 배출한 탄소량은 {}kgCO2입니다'.format(car_move_co2))
 
-	st.header('차를 제주도로 이동시키기 위해 배출한 탄소배출량은 {}입니다'.format(carbon_car_dis_st+carbon_car_dis_ar))
-	st.write('화물차로 이동시키기 위해 배출한 탄소량은 ', carbon_car_dis_st, 'kgCO2입니다')
-	st.write('해운으로 이동시키기 위해 배출한 탄소량은 ', carbon_car_dis_ar, 'kgCO2입니다')
+	st.header('차를 제주도로 이동시키기 위해 배출한 탄소배출량은 {}입니다'.format(round(carbon_car_dis_st+carbon_car_dis_ar,2)))
+	st.write('화물차로 이동시키기 위해 배출한 탄소량은 ', round(carbon_car_dis_st,2), 'kgCO2입니다')
+	st.write('해운으로 이동시키기 위해 배출한 탄소량은 ', round(carbon_car_dis_ar,2), 'kgCO2입니다')
 	st.write('(차량 평균 무게 1.5t 가정)')
 	# st.write(option_car)
 
@@ -155,17 +161,17 @@ def self_car():
 
 	car_fuel_type = car.loc[(car['MODEL'] == option_car)]['FUEL_TYPE']
 	car_fuel_cost = car.loc[(car['MODEL'] == option_car)]['FUEL_COST']
-	car_fuel_type = pd.DataFrame(car_fuel_type)
+	car_fuel_type = pd.DataFrame(car_fuel_type).reset_index()['FUEL_TYPE'][0]
 	car_fuel_cost = pd.DataFrame(car_fuel_cost)
 
-	st.write('내 차의 탄소배출 SPEC')
-	st.write('내가 이용한 자동차 {}은 {}를 연료로 사용하며, 연비는 {}입니다'.format(option_car, (car_fuel_type), float(car_fuel_cost['FUEL_COST'])))
-
-
+	st.success('내 차의 탄소배출 SPEC')
+	# st.write(car_fuel_type['FUEL_TYPE'][0])
+	st.write('내가 이용한 자동차, {}의 {}은 {}를 연료로 사용하며, 연비는 {}km/L입니다'.format(option_brand, option_car, (car_fuel_type), float(car_fuel_cost['FUEL_COST'])))
+	st.info('전기차 (Electric)가 탄소 배출량이 제일 적고, Gasoline과 Diesel이 제일 많아요!')
 
 
 def rent_car():
-	global carbon_sum_self
+	global carbon_sum_self, carbon_sum_traffic 
 	# 버스로 이동한 거리를 알려주세요!
 	car_man = st.slider('함께 탑승한 인원수를 입력해주세요', 1, 8)
 	st.text('함께 {}명 탑승했습니다 '.format(car_man))
@@ -187,11 +193,11 @@ def rent_car():
 	carbon_avg_rent = 0
 	st.header("렌터카으로 배출한 총 탄소량은 {}입니다".format(carbon_sum_rent))
 	if carbon_avg_rent > carbon_sum_rent:
-		st.write("제주 렌터카 TOP20의 평균 탄소배출량에 비해 {}kgCO2만큼 적어요".format(carbon_avg_rent - carbon_sum_rent))
+		st.write("제주 렌터카 TOP20의 평균 탄소배출량에 비해 {}kgCO2만큼 적어요".format(round(carbon_avg_rent - carbon_sum_rent,2)))
 	elif carbon_avg_rent <= carbon_sum_rent:
-		st.write("제주 렌터카 TOP20의 평균 탄소배출량에 비해 {}kgCO2만큼 많아요".format(-carbon_avg_rent + carbon_sum_rent))
+		st.write("제주 렌터카 TOP20의 평균 탄소배출량에 비해 {}kgCO2만큼 많아요".format(round(-carbon_avg_rent + carbon_sum_rent,2)))
 	
-	st.write("추가 꿀팁! 자전거의 탄소 배출량은 0이에요~")
+	st.info("추가 꿀팁! 자전거의 탄소 배출량은 0이에요~")
 
 	
 	car = pd.read_csv('data/preprocessed/car.csv', encoding='cp949')
@@ -202,29 +208,29 @@ def rent_car():
 	car_factor = car.loc[(car['MODEL'] == option_car)]['FACTOR']
 	car_factor_df = pd.DataFrame(car_factor)
 	car_move_co2 = float(car_factor_df['FACTOR'] * car_dis_sum)/car_man
-	st.write('자동차 이용으로 배출한 탄소량은 {}kgCO2입니다'.format(car_move_co2))
+	st.write('자동차 이용으로 배출한 탄소량은 {}kgCO2입니다'.format(round(car_move_co2,2)))
 	car_avg_co2 = float(pd.DataFrame(car['FACTOR']).mean() * car_dis_sum /car_man)
 	# st.write(car_avg_co2)
 	car_co2_dif = abs(car_move_co2-car_avg_co2)
 	if car_co2_dif>0:
-		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(car_co2_dif))
+		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(round(car_co2_dif,2)))
 	elif car_co2_dif<0:
-		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(car_co2_dif))
+		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(round(car_co2_dif,2)))
 	
 	# 자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 [ ]만큼 많아요/적어요
 	car_size_co2 = 0
 	car_size_co2_dif = abs(car_size_co2 - car_avg_co2)
 	if car_size_co2_dif>0:
-		st.write('자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(car_size_co2_dif))
+		st.write('자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(round(car_size_co2_dif,2)))
 	elif car_size_co2_dif<0:
-		st.write('자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(car_size_co2_dif))
+		st.write('자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(round(car_size_co2_dif,2)))
 
 
 	st.write('자동차 이용으로 배출한 탄소량은 {}kgCO2입니다'.format(car_move_co2))
 
-	st.header('차를 제주도로 이동시키기 위해 배출한 탄소배출량은 {}입니다'.format(carbon_car_dis_st+carbon_car_dis_ar))
-	st.write('화물차로 이동시키기 위해 배출한 탄소량은 ', carbon_car_dis_st, 'kgCO2입니다')
-	st.write('해운으로 이동시키기 위해 배출한 탄소량은 ', carbon_car_dis_ar, 'kgCO2입니다')
+	st.header('차를 제주도로 이동시키기 위해 배출한 탄소배출량은 {}입니다'.format(round(carbon_car_dis_st+carbon_car_dis_ar,2)))
+	st.write('화물차로 이동시키기 위해 배출한 탄소량은 ', round(carbon_car_dis_st,2), 'kgCO2입니다')
+	st.write('해운으로 이동시키기 위해 배출한 탄소량은 ', round(carbon_car_dis_ar,2), 'kgCO2입니다')
 	st.write('(차량 평균 무게 1.5t 가정)')
 	# st.write(option_car)
 
@@ -243,63 +249,86 @@ def rent_car():
 
 def public():
 	global carbon_sum_public
+	bus_distance, subway_distance = 0, 0
 	# 버스로 이동한 거리를 알려주세요!
-	st.write("버스로 이동한 거리를 알려주세요!")
-	bus_distance = st.slider('애월에서 한림까지의 거리는 00km에요', 0, 1000, key='bus')
-	st.write('버스로 총 ', bus_distance, 'km 이동하셨습니다')
+	option_public = st.multiselect("어떤 대중교통을 이용하셨나요?", ("버스", "지하철"))
+	if len(option_public)==1:
+		if option_public[0] =="버스":
+		# st.write(option_public)
+			st.write(":bus: 버스로 이동한 거리를 알려주세요!")
+			bus_distance = st.slider('애월에서 한림까지의 거리는 00km에요', 0, 1000, key='bus')
+			st.write('버스로 총 ', bus_distance, 'km 이동하셨습니다')
+			carbon_sum_public = carbon_sum_public + bus_distance*27.7/1000 
 
-	# 지하철로 이동한 거리를 알려주세요!**
-	st.write("지하철로 이동한 거리를 알려주세요!")
-	subway_distance = st.slider('애월에서 한림까지의 거리는 00km에요', 0, 1000, key='subway')
-	st.write('지하철로 총 ', subway_distance, 'km 이동하셨습니다')
+		elif option_public[0] =="지하철":# 지하철로 이동한 거리를 알려주세요!**
+			st.write(":metro: 지하철로 이동한 거리를 알려주세요!")
+			subway_distance = st.slider('애월에서 한림까지의 거리는 00km에요', 0, 1000, key='subway')
+			st.write('지하철로 총 ', subway_distance, 'km 이동하셨습니다')
+			carbon_sum_public = carbon_sum_public + subway_distance*1.53/1000
 
-	carbon_sum_public = carbon_sum_public + bus_distance*27.7/1000 + subway_distance*1.53/1000
-	st.header("대중교통으로 배출한 총 탄소량은 {}입니다".format(carbon_sum_public))
-	st.write("그 중 버스 이용으로 배출한 탄소량은 {}이며, 지하철 이용으로 배출한 탄소량은 {}kgCO2입니다".format(bus_distance*27.7/1000, subway_distance*1.53/1000))
-	st.write("추가 꿀팁! 자전거의 탄소 배출량은 0이에요~")
+	if len(option_public)==2:
+		# st.write(option_public)
+		st.write(":bus: 버스로 이동한 거리를 알려주세요!")
+		bus_distance = st.slider('애월에서 한림까지의 거리는 00km에요', 0, 1000, key='bus')
+		st.write('버스로 총 ', bus_distance, 'km 이동하셨습니다')
+
+		st.write(":metro: 지하철로 이동한 거리를 알려주세요!")
+		subway_distance = st.slider('애월에서 한림까지의 거리는 00km에요', 0, 1000, key='subway')
+		st.write('지하철로 총 ', subway_distance, 'km 이동하셨습니다')
+		carbon_sum_public = carbon_sum_public + bus_distance*27.7/1000 + subway_distance*1.53/1000
+
+	st.header("대중교통으로 배출한 총 탄소량은 {}kgCO2입니다".format(round(carbon_sum_public,2)))
+	st.write("그 중 버스 이용으로 배출한 탄소량은 {}이며, 지하철 이용으로 배출한 탄소량은 {}kgCO2입니다".format(round(bus_distance*27.7/1000,2), round(subway_distance*1.53/1000,2)))
+	st.write("추가 꿀팁! 자전거의 탄소 배출량은 0kgCO2이에요~")
 
 def co2():
 	global carbon_sum_co2, carbon_sum_self, carbon_sum_rent, carbon_sum_public
-	st.header("여행 시 이용한 교통수단 별 탄소배출량을 적어주세요")
-	st.write("Q1에서 1번 또는 2번을 선택했을 시 해당 공항/항구로 이동하는데 이용한 교통수단도 포함시켜주세요~")
+	st.header("❓ 여행 시 이용한 교통수단 별 탄소배출량을 적어주세요")
+	st.write("1️⃣에서 1번 또는 2번을 선택했을 시 해당 공항/항구로 이동하는데 이용한 교통수단도 포함시켜주세요~")
 	checkbox_selfcar = st.checkbox('자차')
 	checkbox_rentcar = st.checkbox('렌터카')
 	checkbox_public = st.checkbox('대중교통')
 	
 
 	if checkbox_selfcar:
-		st.write('자차를 타고 이동하셨습니다')
+		st.write(':car: 자차를 타고 이동하셨습니다')
 		self_car()
 	if checkbox_rentcar:
-		st.write('렌터차를 타고 이동하셨습니다')
+		st.write(':car: 렌터차를 타고 이동하셨습니다')
 		rent_car()
 	if checkbox_public:
-		st.write('대중교통을 타고 이동하셨습니다')
+		st.write(':bus: :metro: 대중교통을 타고 이동하셨습니다')
 		public()
 
 	carbon_sum_co2 = carbon_sum_self + carbon_sum_rent + carbon_sum_public
 	
-	st.header('(Q2)에서의 총 탄소배출량은 {}kgCO2입니다'.format(carbon_sum_co2))
+	st.success('2️⃣ 총 탄소배출량은 {}kgCO2입니다'.format(round(carbon_sum_co2,2)))
 	if checkbox_selfcar:
-		st.write('자차로 배출한 탄소 배출량은 ', carbon_sum_self, '입니다')
+		st.write('자차로 배출한 탄소 배출량은 ', round(carbon_sum_self,2), 'kgCO2입니다')
 	if checkbox_rentcar:
-		st.write('렌터카로 배출한 탄소 배출량은 ', carbon_sum_rent, '입니다')
+		st.write('렌터카로 배출한 탄소 배출량은 ', round(carbon_sum_rent,2), 'kgCO2입니다')
 	if checkbox_public:
-		st.write('대중교통으로 배출한 탄소 배출량은 ', carbon_sum_public, '입니다')
+		st.write('대중교통으로 배출한 탄소 배출량은 ', round(carbon_sum_public,2), 'kgCO2입니다')
 
 def main():
+	global carbon_sum_traffic, carbon_sum_plane, carbon_sum_ship, carbon_sum_car, carbon_sum_resident, carbon_sum_co2, carbon_sum_self, carbon_sum_rent, carbon_sum_public
 	st.title("[탄소 발자국 계산기] 교통수단")
 	global carbon_sum_co2, carbon_sum_traffic
-	checkbox_traffic = st.checkbox("(Q1) 제주도까지 어떻게 이동하셨나요?")
-	checkbox_co2 = st.checkbox("(Q2) 여행 시 이용한 교통수단 별 탄소배출량을 적어주세요")
+	checkbox_traffic = st.checkbox("1️⃣ 제주도까지 어떻게 이동하셨나요?")
+	checkbox_co2 = st.checkbox("2️⃣  여행 시 이용한 교통수단 별 탄소배출량을 적어주세요")
 
 	if checkbox_traffic:
 		traffic()
 	if checkbox_co2:
 		co2()
-	st.success('여행에서 나온 총 탄소 배출량은 {}kgCO2 입니다'.format(carbon_sum_co2+carbon_sum_traffic))
-	st.write('(Q1) 탄소 배출량은 ', carbon_sum_traffic, 'kgCO2 입니다')
-	st.write('(Q2) 탄소 배출량은 ', carbon_sum_co2, 'kgCO2 입니다')
 	
+	carbon_sum_co2, carbon_sum_traffic = carbon_sum_co2*2, carbon_sum_traffic *2
+	st.header('➡️ 여행에서 나온 총 탄소 배출량은 {}kgCO2 입니다'.format(round(carbon_sum_co2+carbon_sum_traffic,2)))
+	st.write('1️⃣ 탄소 배출량은 {}kgCO2 입니다'.format(round(carbon_sum_traffic,2)))
+	st.write('2️⃣ 탄소 배출량은 {}kgCO2 입니다'.format(round(carbon_sum_co2,2)))
+	
+	carbon_sum_traffic, carbon_sum_plane, carbon_sum_ship, carbon_sum_car, carbon_sum_resident= 0, 0, 0, 0, 0
+	carbon_sum_co2, carbon_sum_self, carbon_sum_rent, carbon_sum_public = 0, 0, 0, 0	
+
 if __name__ == '__main__':
 	main()
