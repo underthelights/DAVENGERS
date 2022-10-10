@@ -34,7 +34,7 @@ def store():
 def food():
 	global carbon_store_food,d 
 	food_persona = pd.read_csv('data/preprocessed/food/food_persona.csv')
-	st.write(food_persona)
+	# st.write(food_persona)
 	global carbon_food_category
 
 	option_food_menu = st.multiselect('어떤 분류를 선택하시겠어요?', (food_persona.iloc[:,2].unique()), key=d+813)
@@ -45,7 +45,7 @@ def food():
 		option_food_menu_co2= option_food_menu_df.iloc[:,8]
 		option_food_menu_num =option_food_menu_df.iloc[:,7]
 
-		st.write('{}! "{}"를 선택하셨습니다'.format(option_food_menu_persona[0], option_food_menu))
+		st.write('{}! "{}"를 선택하셨습니다'.format(option_food_menu_persona[0], option_food_menu[0]))
 		option_food_detail = st.multiselect('어떤 음식을 드실 예정인가요?', option_food_menu_detail[0].split(", "))
 		# st.write(option_food_menu_detail)
 

@@ -69,13 +69,13 @@ def main():
 	
 	elif option_days == 2:
 		for _ in range(0, option_days):
-			st.warning('{}번째 밤'.format(_+1))
+			st.warning('🌙 {}번째 밤'.format(_+1))
 			d = d+1
 			days(_)
 	
 	elif option_days == 3:
 		for _ in range(0, option_days):
-			st.warning('{}번째 밤'.format(_+1))
+			st.warning('🌙 {}번째 밤'.format(_+1))
 			d = d+1
 			days(_)
 	

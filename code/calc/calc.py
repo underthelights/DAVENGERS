@@ -12,14 +12,14 @@ for _ in range(0, len(option_calc_type)):
     
     import food, tourism, traffic, accom
     if(option_calc_type[_] == "교통"):
-        st.write(':oncoming_automobile: 교통 탄소계산기를 이용할게요')
+        st.info(':oncoming_automobile: 교통 탄소계산기를 이용할게요')
         traffic.main()
     if(option_calc_type[_] == "음식"):
-        st.write(':stuffed_flatbread: 음식 탄소계산기를 이용할게요')
+        st.info(':stuffed_flatbread: 음식 탄소계산기를 이용할게요')
         food.main()
     if(option_calc_type[_] == "관광"):
-        st.write(':camping: 관광 탄소계산기를 이용할게요')
+        st.info(':camping: 관광 탄소계산기를 이용할게요')
         tourism.main()
     if(option_calc_type[_] == "숙소"):
-        st.write(':hotel: 숙소 탄소계산기를 이용할게요')
+        st.info(':hotel: 숙소 탄소계산기를 이용할게요')
         accom.main()
