@@ -65,10 +65,10 @@ def ingredient():
 			carbon_food_df = pd.DataFrame(igrd.loc[igrd['type_detail'] == option_food_type[_]])['CO2']
 			# st.write(carbon_food_df.unique()[0])
 			carbon_food_igrd += carbon_food_df.unique()[0]
-		st.write("음식을 드시면서 배출하신 탄소 배출량은 {}kgCO2 이에요".format(round(carbon_food_igrd,2)))
+		st.success("음식을 드시면서 배출하신 탄소 배출량은 {}kgCO2 이에요".format(round(carbon_food_igrd,2)))
 
 	elif select_option_store == "아니요, 아무것도 안 먹었어요":
-		st.write("배출하신 탄소 배출량은 0kgCO2 이에요")
+		st.success("배출하신 탄소 배출량은 0kgCO2 이에요")
 
 
 def main():
