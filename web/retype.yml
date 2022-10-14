@@ -1,13 +1,15 @@
 input: .
 output: .retype
-url: # Add your website address here
+url: https://underthelights.github.io/DAVENGERS/
 branding:
-  title: DEVENGERS
+  title: DAVENGERS
   label: PRJ
 links:
 - text: 탄소 발자국 계산기
-  link: /carbon-footprint
+  link: /DAVENGERS/carbon-footprint
 - text: 여행 경로 추천
-  link: /path
+  link: /DAVENGERS/recsys
+- text: Authors
+  link: /DAVENGERS/authors
 footer:
-  copyright: "&copy; Copyright {{ year }}. All rights reserved."
+  copyright: "&copy; Copyright {{ year }}. DAVENGERS. All rights reserved."
