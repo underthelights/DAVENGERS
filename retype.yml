@@ -6,10 +6,10 @@ branding:
   label: PRJ
 links:
 - text: 여행 관련 탄소발자국 계산기 구축
-  link: /DAVENGERS/carbon-footprint
+  link: https://underthelights.github.io/DAVENGERS/carbon-footprint/
 - text: 친환경 제주여행 루트 추천 시스템 구축과 팁 제안
-  link: /DAVENGERS/recsys
+  link: https://underthelights.github.io/DAVENGERS/recsys/
 - text: Authors
-  link: /DAVENGERS/authors
+  link: https://underthelights.github.io/DAVENGERS/author/
 footer:
   copyright: "&copy; Copyright {{ year }}. DAVENGERS. All rights reserved."
