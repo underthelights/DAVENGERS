@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.719027662682">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.719030628062">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,11 +32,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=2.4.0.719027662682" rel="stylesheet" />
+    <link href="resources/css/retype.css?v=2.4.0.719030628062" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.719027662682" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.719030628062" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.719027662682" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.719030628062" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -233,7 +233,7 @@
     </h3>
 </doc-anchor-target>
 <ul>
-<li>(과제1) 여행 영역별 탄소발자국 계산기 구축 완료
+<li><p>(과제1) 여행 영역별 탄소발자국 계산기 구축 완료</p>
 <ul>
 <li>교통/교통업 (traffic)</li>
 <li>음식/요식업 (food)</li>
@@ -241,7 +241,28 @@
 <li>관광/관광업 (tourism)</li>
 </ul>
 </li>
-<li>배포 (탄소 발자국 계산기) : <a href="https://underthelights-davengers-codecalccalc-8i6c7h.streamlitapp.com">[링크]</a></li>
+<li><p>배포 (탄소 발자국 계산기) : <a href="https://underthelights-davengers-codecalccalc-8i6c7h.streamlitapp.com">[링크]</a></p>
+</li>
+<li><p>탄소 발자국 계산기 (종합)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">streamlit run code/calc/calc.py</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>탄소 발자국 계산기 (숙소)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">streamlit run code/calc/accom.py</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>탄소 발자국 계산기 (음식)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">streamlit run code/calc/food.py</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>탄소 발자국 계산기 (관광지)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">streamlit run code/calc/tourism.py</code></pre>
+</doc-codeblock></div>
+</li>
 </ul>
 <doc-anchor-target id="제주도-여행루트-추천시스템-개발">
     <h3>
@@ -260,21 +281,56 @@
 </ul>
 </li>
 <li>배포 (여행자 취향저격 Hexagon) : <a href="https://underthelights-recommend-tour-input-recommend-input-k4wcm6.streamlitapp.com">[링크]</a></li>
+<li>관광지별 지표 점수 계산 (NLP, Word2Vec, t-SNE, Clustering을 통한 Scoring 구현) : <a href="https://colab.research.google.com/drive/1nz9uJD4KzHHdwAb8Lu0sHDP89Q2ofyvz?usp=sharing">[Colaboratory 링크]</a>, <a href="https://github.com/underthelights/DAVENGERS/blob/main/%EA%B4%80%EA%B4%91%EC%A7%80%EB%B3%84_%EC%A7%80%ED%91%9C_%EC%A0%90%EC%88%98_%EA%B3%84%EC%82%B0.ipynb">[GitHub 링크]</a></li>
+<li>여행자 친환경 제주여행 루트 추천 알고리즘 구현 (JEJU_ASSEMBLE) : <a href="https://github.com/underthelights/DAVENGERS/blob/main/code/rec/jeju_assemble/JEJU_ASSEMBLE.ipynb">[GitHub 링크]</a>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">사용자 선호도 점수 : 자연 선호 (purpose1), 액티비티 선호 (purpose2), 문화유적 선호 (purpose3)
+- 0에서 1 사이의 실수
+
+핫플 선호도 점수 (popularity)
+- 0에서 1 사이의 실수
+
+여행 밀도 점수 (bbak)
+- 0에서 1 사이의 실수
+
+맛집 추구 점수 (bab)
+- 0에서 1 사이의 실수
+
+교통 수단 (car)
+- 0 또는 1 (정수)
+
+해당 날짜에 여행할 지역 : day1~day4, day속성
+- day속성에 따른 sequence로 정의
+- 각 권역별 넘버링에 따른 day1~day4 값</code></pre>
+</doc-codeblock></div>
+</li>
 </ul>
-<doc-anchor-target id="team-members">
+<doc-anchor-target id="기술-스택">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#team-members">#</doc-anchor-trigger>
-        <span>Team Members</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#기술-스택">#</doc-anchor-trigger>
+        <span>기술 스택</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Main Language : Python</li>
+<li>Most Used Python Library : <a href="https://pandas.pydata.org/">Pandas</a>, <a href="https://streamlit.io">Streamlit</a>, <a href="https://matplotlib.org/">Matplotlib</a>, <a href="https://plotly.com/python/">Plotly</a>, <a href="https://seaborn.pydata.org/">Seaborn</a>, <a href="https://numpy.org/">NumPy</a>, <a href="https://geopy.readthedocs.io/en/stable/">GeoPy</a></li>
+<li>Main Develop Environment : Jupyter Notebook, Google Colaboratory (Windows 10, Mac OS X)</li>
+<li>Deployment : <a href="https://streamlit.io">Streamlit Sharing</a></li>
+</ul>
+<doc-anchor-target id="authors">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#authors">#</doc-anchor-trigger>
+        <span>Authors</span>
     </h2>
 </doc-anchor-target>
 <blockquote>
-<p>? 데벤저스: <a href="https://insightsg.notion.site/INSIGHT-Sogang-Univ-f5e18d99663c4f47a767dbe29d5ec170">Sogang U. INSIGHT</a>, Business Big Data Analysis Study Academy</p>
+<p>데벤저스 at <a href="https://insightsg.notion.site/INSIGHT-Sogang-Univ-f5e18d99663c4f47a767dbe29d5ec170">Sogang U. INSIGHT</a> : Sogang Business Big Data Analysis Study Academy</p>
 </blockquote>
 <ul>
-<li>하정현 (<a href="https://github.com/gingzuu">@gingzuu</a>) 경영학 &amp; 빅데이터사이언스 학사과정, 서강대학교</li>
-<li>나경훈 (<a href="https://github.com/gingzuu">@gingzuu</a>) 수학 &amp; 빅데이터사이언스 학사과정, 서강대학교</li>
+<li>하정현 (<a href="https://github.com/jeonghyunhaaa">@jeonghyunhaaa</a>) 경영학 &amp; 빅데이터사이언스 학사과정, 서강대학교</li>
+<li>나경훈 (<a href="https://github.com/rudgnsdl06">@rudgnsdl06</a>) 수학 &amp; 빅데이터사이언스 학사과정, 서강대학교</li>
 <li>고경주 (<a href="https://github.com/gingzuu">@gingzuu</a>) 경영학 &amp; 빅데이터사이언스 학사과정, 서강대학교</li>
-<li>정혜나 (<a href="https://github.com/gingzuu">@gingzuu</a>) 경영학 &amp; 컴퓨터공학 학사과정, 서강대학교</li>
+<li>정혜나 (<a href="https://github.com/77hannah77">@77hannah77</a>) 경영학 &amp; 컴퓨터공학 학사과정, 서강대학교</li>
 <li>심규환 (<a href="https://github.com/underthelights">@underthelights</a>) 컴퓨터공학 학사과정, 서강대학교</li>
 </ul>
 
