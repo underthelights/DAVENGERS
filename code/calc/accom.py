@@ -13,7 +13,7 @@ carbon_accom1, carbon_accom_total, carbon_accom2 = 0, 0, 0
 d = 0
 def q1():
 	global carbon_accom1, carbon_accom_total, d
-	st.header("머무시는 숙소의 이름과 숙박일수를 알려주세요")
+	st.header("🏨머무시는 숙소의 이름과 숙박일수를 알려주세요")
 	
 	option_accom_name = st.multiselect('어디 숙소에 묵으셨나요?', (accom['name'].unique()), key=d+37)
 	# option_day = []
@@ -25,10 +25,10 @@ def q1():
 		carbon_accom_element = float((accom.loc[accom['name'] == option_accom_name[_]])['carbon'])
 		option_day = st.number_input('얼마나 {}에 머무르셨나요?'.format(option_accom_name[_]), min_value=1, step = 1)
 		# st.write('총 {}일 해당 숙소에서 지내셨습니다'.format(option_day))
-		st.write('{}에 머무르며 발생된 탄소 배출량은 {}kgCO2입니다'.format(option_accom_name[_], carbon_accom_element*option_day))
+		st.write('{}에 머무르며 발생된 탄소 배출량은 {}kgCO2입니다'.format(option_accom_name[_], round(carbon_accom_element*option_day,2)))
 		carbon_accom1 = carbon_accom1 + carbon_accom_element*option_day
 
-	st.write('숙소의 총 탄소 배출량 합계는 {}kgCO2입니다'.format(carbon_accom1))
+	st.info('숙소의 총 탄소 배출량 합계는 {}kgCO2입니다'.format(round(carbon_accom1,2)))
 
 def q2():
 	global carbon_accom_total, carbon_accom2, d
@@ -42,12 +42,12 @@ def q2():
 		option_day = st.number_input('얼마나 {}에 머무르셨나요?'.format(option_accom_type[_]), min_value=1, step = 1)
 		# st.write('총 {}일 해당 숙소에서 지내셨습니다'.format(option_day))
 		if(carbon_accom_element!=0): 
-			st.write('{}에 머무르며 발생된 탄소 배출량은 {}kgCO2입니다'.format(option_accom_type[_], carbon_accom_element*option_day))
+			st.write('{}에 머무르며 발생된 탄소 배출량은 {}kgCO2입니다'.format(option_accom_type[_], round(carbon_accom_element*option_day,2)))
 		else : 
 			st.write('{}에서의 탄소 배출량은 측정할 수 없으니 0으로 대체합니다'.format(option_accom_type[_]))
 		carbon_accom_total = carbon_accom_total + carbon_accom_element*option_day
 
-	st.write('총 탄소 배출량 합계는 {}kgCO2입니다'.format(carbon_accom_total))
+	st.info('총 탄소 배출량 합계는 {}kgCO2입니다'.format(round(carbon_accom_total,2)))
 
 def days(option_days):
 	global d
