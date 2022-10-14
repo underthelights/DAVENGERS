@@ -10,6 +10,7 @@ accom_total = pd.read_csv('data/preprocessed/accom/accom_total.csv')
 accom  = pd.read_csv('data/preprocessed/accom/accom.csv')
 
 carbon_accom1, carbon_accom_total, carbon_accom2 = 0, 0, 0
+
 d = 0
 def q1():
 	global carbon_accom1, carbon_accom_total, d
@@ -60,6 +61,7 @@ def days(option_days):
 
 
 def main():
+	global carbon_accom1, carbon_accom_total, carbon_accom2
 	st.title("[탄소 발자국 계산기] 숙소")
 	global d
 	option_days = st.number_input('숙소에서 몇 박 묵으셨나요?', min_value=1, max_value=3, step=1)
@@ -78,6 +80,6 @@ def main():
 			st.warning('🌙 {}번째 밤'.format(_+1))
 			d = d+1
 			days(_)
-	
+	carbon_accom1, carbon_accom_total, carbon_accom2 = 0, 0, 0
 if __name__ == '__main__':
 	main()
