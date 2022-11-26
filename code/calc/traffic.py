@@ -134,9 +134,9 @@ def self_car():
 	# st.write(car_avg_co2)
 	car_co2_dif = abs(car_move_co2-car_avg_co2)
 	if car_co2_dif>0:
-		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(format(car_co2_dif,2)))
+		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 많아요'.format(car_co2_dif))
 	elif car_co2_dif<0:
-		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(format(car_co2_dif,2)))
+		st.write('자동차 평균 탄소배출량에 비해 {}kgCO2만큼 적어요'.format(car_co2_dif))
 	
 	# 자동차 中 [Type(승합, 중대형 등등)]의 평균 탄소배출량에 비해 [ ]만큼 많아요/적어요
 	car_size_co2 = 0
