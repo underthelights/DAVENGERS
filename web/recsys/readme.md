@@ -21,7 +21,7 @@ draft: false
     - 제주관광공사 추천 여행지 필수방문
 - 배포 (여행자 취향저격 Hexagon) : [[링크]](https://underthelights-recommend-tour-input-recommend-input-k4wcm6.streamlitapp.com)
 - 관광지별 지표 점수 계산 (NLP, Word2Vec, t-SNE, Clustering을 통한 Scoring 구현) : [[Colaboratory 링크]](https://colab.research.google.com/drive/1nz9uJD4KzHHdwAb8Lu0sHDP89Q2ofyvz?usp=sharing), [[GitHub 링크]](https://github.com/underthelights/DAVENGERS/blob/main/관광지별_지표_점수_계산.ipynb)
-- 여행자 친환경 제주여행 루트 추천 알고리즘 구현 (JEJU_ASSEMBLE) : [[GitHub 링크]](https://github.com/underthelights/DAVENGERS/blob/main/code/rec/jeju_assemble/JEJU_ASSEMBLE.ipynb)
+- 여행자 친환경 제주여행 루트 추천 알고리즘 구현 (JEJU_ASSEMBLE) : [[GitHub Gist 링크]](https://gist.github.com/underthelights/723361b1c00249e0c193bb7fbd896c46)
     ``` 
     사용자 선호도 점수 : 자연 선호 (purpose1), 액티비티 선호 (purpose2), 문화유적 선호 (purpose3)
     - 0에서 1 사이의 실수
@@ -42,3 +42,5 @@ draft: false
     - day속성에 따른 sequence로 정의
     - 각 권역별 넘버링에 따른 day1~day4 값
     ```
+
+https://gist.github.com/underthelights/723361b1c00249e0c193bb7fbd896c46
