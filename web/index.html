@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/DAVENGERS">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722747104406">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722748324669">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -33,11 +33,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/DAVENGERS/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=2.4.0.722747104406" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.722748324669" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.722747104406" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.722748324669" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.722747104406" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.722748324669" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -301,9 +301,12 @@
 </li>
 <li>배포 (여행자 취향저격 Hexagon) : <a href="https://underthelights-recommend-tour-input-recommend-input-k4wcm6.streamlitapp.com">[링크]</a></li>
 <li>관광지별 지표 점수 계산 (NLP, Word2Vec, t-SNE, Clustering을 통한 Scoring 구현) : <a href="https://colab.research.google.com/drive/1nz9uJD4KzHHdwAb8Lu0sHDP89Q2ofyvz?usp=sharing">[Colaboratory 링크]</a>, <a href="https://github.com/underthelights/DAVENGERS/blob/main/%EA%B4%80%EA%B4%91%EC%A7%80%EB%B3%84_%EC%A7%80%ED%91%9C_%EC%A0%90%EC%88%98_%EA%B3%84%EC%82%B0.ipynb">[GitHub 링크]</a></li>
-<li>여행자 친환경 제주여행 루트 추천 알고리즘 구현 (JEJU_ASSEMBLE) : <a href="https://github.com/underthelights/DAVENGERS/blob/main/code/rec/jeju_assemble/JEJU_ASSEMBLE.ipynb">[GitHub 링크]</a>
+<li>여행자 친환경 제주여행 루트 추천 알고리즘 구현 (JEJU_ASSEMBLE) : <a href="https://gist.github.com/underthelights/723361b1c00249e0c193bb7fbd896c46">[GitHub Gist 링크]</a></li>
+</ul>
+<p>&quot;https://gist.github.com/underthelights/723361b1c00249e0c193bb7fbd896c46.js&quot;</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">사용자 선호도 점수 : 자연 선호 (purpose1), 액티비티 선호 (purpose2), 문화유적 선호 (purpose3)
+<pre class="language-none"><code v-pre class="language-none">``` 
+사용자 선호도 점수 : 자연 선호 (purpose1), 액티비티 선호 (purpose2), 문화유적 선호 (purpose3)
 - 0에서 1 사이의 실수
 
 핫플 선호도 점수 (popularity)
@@ -320,10 +323,9 @@
 
 해당 날짜에 여행할 지역 : day1~day4, day속성
 - day속성에 따른 sequence로 정의
-- 각 권역별 넘버링에 따른 day1~day4 값</code></pre>
+- 각 권역별 넘버링에 따른 day1~day4 값
+```</code></pre>
 </doc-codeblock></div>
-</li>
-</ul>
 <doc-anchor-target id="기술-스택">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#기술-스택">#</doc-anchor-trigger>
