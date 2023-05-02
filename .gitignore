@@ -1,2 +1,4 @@
-*.csv
+# Internal Data & Document
+*.hwp
+*.pdf
 .DS_Store
